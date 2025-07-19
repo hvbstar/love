@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <title>Hii :3 Chào Cậu</title>
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Open Graph metadata (for sharing) -->
+  <meta property="og:title" content="Only You">
+  <meta property="og:description" content="Click on the link and you will have a surprise!!!">
+  <meta property="og:image" content="https://github.com/hvbstar/only.you/blob/main/img/traitimc.jpg?raw=true">
+  <meta property="og:url" content="https://hvbstar.github.io/only.you/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Only You">
+  <meta name="twitter:description" content="Click on the link and you will have a surprise!!!">
+  <meta name="twitter:image" content="https://github.com/hvbstar/only.you/blob/main/img/traitimc.jpg?raw=true">
+
+  <!-- Thêm favicon -->
+  <link rel="icon" type="image/png" href="./img/icon1.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('img/backgroundxu.png') center/cover no-repeat;
+      backdrop-filter: blur(4px);
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      text-align: center;
+      width: 300px;
+      backdrop-filter: blur(10px);
+      border: 2px solid #fff;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      color: white;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 5px #000;
+    }
+
+    #passwordInput {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      text-align: center;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      animation: flash 1s infinite alternate;
+    }
+
+    @keyframes flash {
+      0% { background-color: #ff4da6; color: white; }
+      50% { background-color: #33ccff; color: #000; }
+      100% { background-color: #66ff66; color: #000; }
+    }
+
+    .keyboard {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .keyboard button {
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #fff;
+      color: #333;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+
+    .keyboard button:hover {
+      transform: scale(1.1);
+      background-color: #ffccff;
+    }
+
+    .ok-btn {
+      grid-column: span 3;
+      margin-top: 10px;
+      background: #ff66cc;
+      color: white;
+      font-weight: bold;
+    }
+
+    .error {
+      margin-top: 10px;
+      color: red;
+      font-weight: bold;
+    }
+
+    .gif-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .welcome-box {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      border: 4px dashed #ff69b4;
+      text-align: center;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #ff69b4; }
+      50% { box-shadow: 0 0 30px #ff69b4; }
+      100% { box-shadow: 0 0 10px #ff69b4; }
+    }
+
+    .welcome-box h1 {
+      font-size: 26px;
+      color: #ff3399;
+      margin-bottom: 20px;
+    }
+
+    .welcome-box button {
+      padding: 12px 20px;
+      font-size: 18px;
+      background: #ff66cc;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .welcome-box button:hover {
+      background: #ff1493;
+    }
+  </style>
+</head>
+<body>
+  <!-- Overlay with welcome -->
+  <div class="overlay" id="overlay">
+    <div class="welcome-box">
+      <h1>Hello Người Đẹp !!!</h1>
+      <button onclick="enterSite()">OK</button>
+    </div>
+  </div>
+
+  <!-- Background music -->
+  <audio id="bgm" src="audio/Chỉ Bằng Một Cái Gật Đầu Remix.mp3"></audio>
+
+  <div class="container" id="mainContent" style="display: none;">
+    <img class="gif-icon" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2Z3dTUzZGRzeGdrMHMyOTZ3NHRxeDJhM3JlODF4Y2dxbTVlaWszeiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MDJ9IbxxvDUQM/giphy.gif" alt="cute gif" />
+    <h2>Nhập Mật Mã</h2>
+    <input type="password" id="passwordInput" readonly />
+    <div class="keyboard" id="keyboard">
+      <!-- Number Buttons -->
+      <button onclick="appendNumber('1')">1</button>
+      <button onclick="appendNumber('2')">2</button>
+      <button onclick="appendNumber('3')">3</button>
+      <button onclick="appendNumber('4')">4</button>
+      <button onclick="appendNumber('5')">5</button>
+      <button onclick="appendNumber('6')">6</button>
+      <button onclick="appendNumber('7')">7</button>
+      <button onclick="appendNumber('8')">8</button>
+      <button onclick="appendNumber('9')">9</button>
+      <button onclick="appendSymbol('#')">#</button>
+      <button onclick="appendNumber('0')">0</button>
+      <button onclick="deleteLast()">⌫</button>
+      <button class="ok-btn" onclick="checkPassword()">OK</button>
+    </div>
+    <div id="errorMessage" class="error"></div>
+  </div>
+
+  <script>
+    const correctPassword = '22112008';
+    const input = document.getElementById('passwordInput');
+    const errorDiv = document.getElementById('errorMessage');
+    const bgm = document.getElementById('bgm');
+
+    function appendNumber(num) {
+      input.value += num;
+      errorDiv.textContent = '';
+    }
+
+    function appendSymbol(sym) {
+      input.value += sym;
+      errorDiv.textContent = '';
+    }
+
+    function deleteLast() {
+      input.value = input.value.slice(0, -1);
+      errorDiv.textContent = '';
+    }
+
+    function checkPassword() {
+      if (input.value === correctPassword) {
+        window.location.href = 'legit.html';
+      } else {
+        errorDiv.textContent = 'Sai mật khẩu, thử lại!';
+        input.value = '';
+      }
+    }
+
+    function enterSite() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      bgm.play();
+    }
+  </script>
+</body>
+</html>

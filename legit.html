@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <title>&lt;3</title>
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Open Graph metadata (for sharing) -->
+  <meta property="og:title" content="Only You">
+  <meta property="og:description" content="Click on the link and you will have a surprise!!!">
+  <meta property="og:image" content="https://github.com/hvbstar/only.you/blob/main/img/traitimc.jpg?raw=true">
+  <meta property="og:url" content="https://hvbstar.github.io/only.you/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Only You">
+  <meta name="twitter:description" content="Click on the link and you will have a surprise!!!">
+  <meta name="twitter:image" content="https://github.com/hvbstar/only.you/blob/main/img/traitimc.jpg?raw=true">
+
+  <!-- Thêm favicon -->
+  <link rel="icon" type="image/png" href="./img/icon1.png">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      background: url('img/hellokitty.png') no-repeat center center/cover; /* Thay bằng hình bạn muốn */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+h1 {
+  font-size: 5vw;
+  text-align: center;
+  background: linear-gradient(45deg, #ff0066, #ffcc00, #00ccff, #ff0066);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 5s ease infinite, glow 2s ease-in-out infinite;
+  text-shadow:
+    0 0 5px #ff0066,
+    0 0 10px #ffcc00,
+    0 0 15px #00ccff,
+    0 0 20px #ff0066;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow:
+      0 0 5px #ff0066,
+      0 0 10px #ffcc00,
+      0 0 15px #00ccff,
+      0 0 20px #ff0066;
+  }
+  50% {
+    text-shadow:
+      0 0 8px #00ccff,
+      0 0 12px #ff0066,
+      0 0 18px #ffcc00,
+      0 0 25px #00ccff;
+  }
+  100% {
+    text-shadow:
+      0 0 5px #ff0066,
+      0 0 10px #ffcc00,
+      0 0 15px #00ccff,
+      0 0 20px #ff0066;
+  }
+}
+
+    .heart {
+      position: absolute;
+      top: -50px;
+      animation: fall 4s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>&lt;3 TRƯƠNG NGỌC ANH THƯ</h1>
+  <audio id="bgm" src="audio/Chỉ Bằng Một Cái Gật Đầu Remix.mp3" autoplay></audio>
+
+  <script>
+    // Lấy thời gian nhạc từ localStorage
+    const audio = document.getElementById('bgm');
+    const time = localStorage.getItem('musicTime');
+    if (time) {
+      audio.currentTime = parseFloat(time);
+    }
+    audio.play();
+
+    // Hiệu ứng trái tim rơi
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 4000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
