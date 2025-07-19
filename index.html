@@ -28,6 +28,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Segoe UI', sans-serif;
+      touch-action: manipulation;
     }
 
     body {
@@ -239,6 +240,15 @@
       document.getElementById('mainContent').style.display = 'block';
       bgm.play();
     }
+
+  let lastTouchEnd = 0;
+  document.addEventListener('touchend', function (event) {
+    const now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault();
+    }
+    lastTouchEnd = now;
+  }, false);
   </script>
 </body>
 </html>
